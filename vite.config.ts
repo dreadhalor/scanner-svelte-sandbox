@@ -1,10 +1,4 @@
-import {
-  ConfigEnv,
-  defineConfig,
-  ViteDevServer,
-  IndexHtmlTransformContext,
-  UserConfig,
-} from 'vite';
+import { ConfigEnv, defineConfig, ViteDevServer, UserConfig } from 'vite';
 import { svelte } from '@sveltejs/vite-plugin-svelte';
 import dotenv from 'dotenv';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
@@ -44,12 +38,6 @@ function scandit(options: VitePluginScanditOptions) {
         };
       }
     },
-    // transformIndexHtml(html: string, ctx: IndexHtmlTransformContext) {
-    //   return html.replace(
-    //     '<script type="module" src="/src/main.ts"></script>',
-    //     '<script data-id="scandit-main" type="module" src="/src/main.ts"></script>'
-    //   );
-    // },
     configureServer: setupDevServer,
   };
 }

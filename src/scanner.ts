@@ -61,23 +61,7 @@ export async function initializeScanner(
   await context.setFrameSource(camera);
 
   const settings: BarcodeCaptureSettings = new BarcodeCaptureSettings();
-  settings.enableSymbologies([
-    Symbology.EAN13UPCA,
-    Symbology.EAN8,
-    Symbology.UPCE,
-    Symbology.QR,
-    Symbology.DataMatrix,
-    Symbology.Code39,
-    Symbology.Code128,
-    Symbology.InterleavedTwoOfFive,
-  ]);
-
-  const symbologySettings: SymbologySettings = settings.settingsForSymbology(
-    Symbology.Code39
-  );
-  symbologySettings.activeSymbolCounts = [
-    7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-  ];
+  settings.enableSymbologies([Symbology.QR, Symbology.PDF417]);
 
   barcodeCapture = await BarcodeCapture.forContext(context, settings);
   await barcodeCapture.setEnabled(false);
@@ -96,8 +80,6 @@ export async function initializeScanner(
       barcodeCaptureMode: BarcodeCapture,
       session: BarcodeCaptureSession
     ) => {
-      // await barcodeCapture.setEnabled(false);
-      // await barcodeCaptureOverlay.setViewfinder(null);
       const barcode: Barcode = session.newlyRecognizedBarcodes[0];
       const symbology: SymbologyDescription = new SymbologyDescription(
         barcode.symbology
@@ -123,16 +105,8 @@ export async function startScanner(): Promise<void> {
 
 export async function stopScanner(): Promise<void> {
   await barcodeCapture.setEnabled(false);
-  // await barcodeCaptureOverlay.setViewfinder(null);
 }
 
 window.continueScanning = async function () {
-  for (const r of document.querySelectorAll('.result')!) {
-    r.querySelector('button')?.removeEventListener(
-      'click',
-      window.continueScanning
-    );
-    r.remove();
-  }
   await startScanner();
 };
