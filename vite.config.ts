@@ -1,10 +1,9 @@
 import {
   ConfigEnv,
-  IndexHtmlTransformContext,
-  PreviewServer,
-  UserConfig,
-  ViteDevServer,
   defineConfig,
+  ViteDevServer,
+  IndexHtmlTransformContext,
+  UserConfig,
 } from 'vite';
 import { svelte } from '@sveltejs/vite-plugin-svelte';
 import dotenv from 'dotenv';
@@ -31,10 +30,6 @@ function scandit(options: VitePluginScanditOptions) {
     });
   }
 
-  function setupPreviewServer(server: PreviewServer): void {
-    // Custom preview server setup if needed
-  }
-
   return {
     name: 'vite-plugin-scandit',
     configResolved(resolvedConfig: ConfigEnv) {
@@ -49,18 +44,13 @@ function scandit(options: VitePluginScanditOptions) {
         };
       }
     },
-    transformIndexHtml(html: string, ctx: IndexHtmlTransformContext) {
-      return html.replace(
-        '<script type="module" crossorigin src="./index.js"></script>',
-        '<script data-id="scandit-main" type="module" crossorigin src="./index.js"></script>'
-      );
-    },
-    configureServer(server: ViteDevServer) {
-      setupDevServer(server);
-    },
-    configurePreviewServer(server: PreviewServer) {
-      setupPreviewServer(server);
-    },
+    // transformIndexHtml(html: string, ctx: IndexHtmlTransformContext) {
+    //   return html.replace(
+    //     '<script type="module" src="/src/main.ts"></script>',
+    //     '<script data-id="scandit-main" type="module" src="/src/main.ts"></script>'
+    //   );
+    // },
+    configureServer: setupDevServer,
   };
 }
 

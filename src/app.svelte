@@ -28,16 +28,6 @@
     box-sizing: border-box;
   }
 
-  html,
-  body {
-    margin: 0;
-    padding: 0;
-  }
-
-  body {
-    background: #333;
-    font-family: Helvetica, sans-serif;
-  }
 
   #data-capture-view {
     position: absolute;
