@@ -2,7 +2,6 @@ import { ConfigEnv, defineConfig, ViteDevServer, UserConfig } from 'vite';
 import { svelte } from '@sveltejs/vite-plugin-svelte';
 import dotenv from 'dotenv';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
-import mkcert from 'vite-plugin-mkcert';
 
 dotenv.config();
 
@@ -57,7 +56,6 @@ export default defineConfig({
   envPrefix: 'SCANDIT',
   plugins: [
     svelte(),
-    mkcert(),
     viteStaticCopy({
       targets: ['core', 'barcode'].map((module) => ({
         src: `./node_modules/scandit-web-datacapture-${module}/build/engine/*`,

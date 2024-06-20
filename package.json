@@ -26,7 +26,6 @@
     "dotenv": "^16.4.5",
     "scandit-web-datacapture-barcode": "^6.24.1",
     "scandit-web-datacapture-core": "^6.24.1",
-    "vite-plugin-mkcert": "^1.17.5",
     "vite-plugin-static-copy": "^1.0.5"
   }
 }
