@@ -10,7 +10,6 @@ import {
   FrameSourceState,
 } from 'scandit-web-datacapture-core';
 import type {
-  SymbologySettings,
   Barcode,
   BarcodeCaptureSession,
 } from 'scandit-web-datacapture-barcode';
