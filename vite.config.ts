@@ -69,7 +69,4 @@ export default defineConfig({
       licenseKeyPlaceholder: '-- ENTER YOUR SCANDIT LICENSE KEY HERE --',
     }),
   ],
-  server: {
-    https: true,
-  },
 } as UserConfig);
